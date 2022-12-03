@@ -47,6 +47,9 @@ dependencies {
 
     implementation 'com.google.cloud:google-cloud-pubsub'
     implementation 'com.google.cloud:google-cloud-pubsub:1.121.1'
+
+    // Model Mapper
+    implementation 'org.modelmapper:modelmapper:2.4.4'
 }
 
 tasks.named('test') {
