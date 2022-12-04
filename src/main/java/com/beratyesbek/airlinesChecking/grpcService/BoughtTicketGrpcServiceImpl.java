@@ -2,21 +2,23 @@ package com.beratyesbek.airlinesChecking.grpcService;
 
 import com.beratyesbek.airlinesChecking.dao.BoughtTicketDao;
 import com.beratyesbek.airlinesChecking.models.BoughtTicket;
-import com.beratyesbek.grpc.BoughtTicketGrpcServiceGrpc;
 import com.beratyesbek.grpc.BoughtTicketRequest;
+import com.beratyesbek.grpc.BoughtTicketServiceGrpc;
 import com.beratyesbek.grpc.empty;
-import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
-import lombok.AllArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.modelmapper.ModelMapper;
 
 @GrpcService
-@AllArgsConstructor
-public class BoughtTicketGrpcServiceImpl extends BoughtTicketGrpcServiceGrpc.BoughtTicketGrpcServiceImplBase {
+public class BoughtTicketGrpcServiceImpl extends BoughtTicketServiceGrpc.BoughtTicketServiceImplBase {
 
     private final BoughtTicketDao boughtTicketDao;
     private final ModelMapper modelMapper;
+
+    public BoughtTicketGrpcServiceImpl(BoughtTicketDao boughtTicketDao, ModelMapper modelMapper) {
+        this.boughtTicketDao = boughtTicketDao;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public void saveBoughtTicket(BoughtTicketRequest request, StreamObserver<empty> responseObserver) {
@@ -24,4 +26,6 @@ public class BoughtTicketGrpcServiceImpl extends BoughtTicketGrpcServiceGrpc.Bou
         boughtTicketDao.save(boughtTicket);
         super.saveBoughtTicket(request, responseObserver);
     }
+
+
 }

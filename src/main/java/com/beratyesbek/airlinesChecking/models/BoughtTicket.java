@@ -1,7 +1,8 @@
 package com.beratyesbek.airlinesChecking.models;
 
-import jakarta.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity

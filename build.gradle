@@ -1,9 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.0.0'
-    id 'io.spring.dependency-management' version '1.1.0'
-    id 'org.hibernate.orm' version '6.1.5.Final'
-    id 'org.graalvm.buildtools.native' version '0.9.18'
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'com.google.protobuf' version '0.8.18'
 
 }
@@ -34,7 +32,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-
     //GRPC
     implementation 'io.github.lognet:grpc-spring-boot-starter:4.9.0'
     implementation "io.grpc:grpc-netty:${grpcVersion}"
@@ -44,26 +41,21 @@ dependencies {
     implementation platform('com.google.cloud:libraries-bom:26.1.5')
     implementation 'net.devh:grpc-server-spring-boot-starter:2.14.0.RELEASE'
     implementation 'net.devh:grpc-spring-boot-starter:2.14.0.RELEASE'
-
     implementation 'com.google.cloud:google-cloud-pubsub'
     implementation 'com.google.cloud:google-cloud-pubsub:1.121.1'
 
     // Model Mapper
     implementation 'org.modelmapper:modelmapper:2.4.4'
+
+    //Swagger
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-parent:2.7.5'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
-
-hibernate {
-    enhancement {
-        lazyInitialization true
-        dirtyTracking true
-        associationManagement true
-    }
-}
-
 protobuf {
     protoc { artifact = "com.google.protobuf:protoc:${protobufVersion}" }
     plugins {
@@ -82,5 +74,3 @@ sourceSets {
         }
     }
 }
-
-
