@@ -3,7 +3,7 @@ option java_multiple_files = true;
 package com.beratyesbek.grpc;
 
 service BoughtTicketService {
-  rpc saveBoughtTicket(BoughtTicketRequest) returns (empty);
+  rpc saveBoughtTicket(BoughtTicketRequest) returns (BoughtTicketResponse);
 }
 
 message BoughtTicketRequest {
@@ -15,6 +15,6 @@ message BoughtTicketRequest {
   int32 seatGroup = 6;
   string userEmail = 7;
 }
-message empty {
-
+message BoughtTicketResponse {
+  int32 id = 1;
 }
